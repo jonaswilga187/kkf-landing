@@ -1,0 +1,23 @@
+/**
+ * Zentrale Fest-Metadaten und Schwellenwerte für „Gleich“-Hinweise.
+ * Alle Zeiten in den Daten-Dateien beziehen sich auf EVENT_DATE (lokal, z. B. Deutschland).
+ */
+/** Offizielles Kirchenkreis-Logo (CDN Ev.-luth. Kirchenkreis Celle) */
+export const BRAND_LOGO = {
+  src: 'https://assets-raphael.max-e.info/damfiles/logo/kirchenkreis_celle/bilder/logos/kk-web-logo.png-8ea7d16acb172c25cd1b4e157b86ec16.png',
+  srcSet: [
+    'https://assets-raphael.max-e.info/damfiles/logo/kirchenkreis_celle/bilder/logos/kk-web-logo.png_050-8ea7d16acb172c25cd1b4e157b86ec16.png 375w',
+    'https://assets-raphael.max-e.info/damfiles/logo/kirchenkreis_celle/bilder/logos/kk-web-logo.png_200-8ea7d16acb172c25cd1b4e157b86ec16.png 1500w',
+  ].join(', '),
+  width: 750,
+  height: 179,
+}
+
+export const EVENT_CONFIG = {
+  title: 'Kirchenkreisfest Celle',
+  /** Kalendertag des Festes (YYYY-MM-DD) – muss zu den ISO-Zeiten in src/data passen */
+  date: '2026-06-14',
+  locationLine: 'Celle',
+  /** Minuten vor Start, ab wann „Gleich“ angezeigt wird */
+  soonMinutes: 30,
+}

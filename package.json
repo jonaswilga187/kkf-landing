@@ -1,0 +1,22 @@
+{
+  "name": "kkf_landing",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "logo:transparent": "node scripts/make-logo-transparent.mjs"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "sharp": "^0.34.5",
+    "vite": "^8.0.10"
+  },
+  "dependencies": {
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.14.2"
+  }
+}

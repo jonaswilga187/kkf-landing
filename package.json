@@ -7,11 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "logo:transparent": "node scripts/make-logo-transparent.mjs"
+    "logo:transparent": "npm install --no-save sharp && node scripts/make-logo-transparent.mjs"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.1",
-    "sharp": "^0.34.5",
     "vite": "^8.0.10"
   },
   "dependencies": {

@@ -22,30 +22,20 @@ export const stageProgram = [
     title: 'Begrüßung und Eröffnungsandacht',
     artist:
       'Superintendentin Dr. Andrea Burgk-Lempart, KMD Kai Schöneweiß, Projektpastorin Nina Hollung, Kreisposaunenchor',
-    lyrics: `Bläser
-Begrüßung: Andrea und Nina
-Lied: Strahlen brechen viele
-Psalm 27
-Lied: Wo Menschen sich vergessen (FT 172)
-Ansprache / Dialog
-Lied: Schenke mir Gott ein neues Herz (FT 180)
-Gebet und Vaterunser
-Lied: Do it in love
-Segen`,
   },
   {
     id: 'kinderchoere',
     start: `${d}T14:45:00`,
     end: `${d}T15:15:00`,
     title: 'Kinderchöre der Evangelischen Singschule',
-    artist: 'Connie Vogt und Kai Schöneweiß · Bühne B',
+    artist: 'Connie Vogt und Kai Schöneweiß',
   },
   {
     id: 'kabarett-1',
     start: `${d}T15:30:00`,
     end: `${d}T16:00:00`,
     title: 'Musikalisches Kirchenkabarett',
-    artist: 'Duo Camillo · Bühne B',
+    artist: 'Duo Camillo',
   },
   {
     id: 'stadtkantorei',
@@ -66,7 +56,7 @@ Segen`,
     start: `${d}T18:10:00`,
     end: `${d}T19:05:00`,
     title: 'Musikalisches Kirchenkabarett',
-    artist: 'Duo Camillo · Bühne B',
+    artist: 'Duo Camillo',
   },
   {
     id: 'band-indeed',

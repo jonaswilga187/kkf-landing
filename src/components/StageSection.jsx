@@ -8,9 +8,7 @@ export function StageSection({ program, now }) {
       <h2 id="buehne-heading" className="section__title">
         Hauptbühne
       </h2>
-      <p className="section__lead">
-        Aktuelles Programm der Hauptbühne – Ablauf & Liedtexte können bei Bedarf direkt hier angezeigt werden.
-      </p>
+      <p className="section__lead">Aktuelles Programm der Hauptbühne.</p>
       <ol className="stage-timeline" aria-label="Ablauf Hauptbühne">
         {program.map((item) => {
           const phase = getTimelinePhase(item, now)

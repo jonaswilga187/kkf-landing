@@ -1,5 +1,5 @@
 /**
- * Zentrale Fest-Metadaten und Schwellenwerte für „Gleich“-Hinweise.
+ * Zentrale Fest-Metadaten.
  * Alle Zeiten in den Daten-Dateien beziehen sich auf EVENT_DATE (lokal, z. B. Deutschland).
  */
 /** Offizielles Kirchenkreis-Logo (CDN Ev.-luth. Kirchenkreis Celle) */
@@ -18,6 +18,4 @@ export const EVENT_CONFIG = {
   /** Kalendertag des Festes (YYYY-MM-DD) – muss zu den ISO-Zeiten in src/data passen */
   date: '2026-09-05',
   locationLine: 'Landgestüt Celle',
-  /** Minuten vor Start, ab wann „Gleich“ angezeigt wird */
-  soonMinutes: 30,
 }

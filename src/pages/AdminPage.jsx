@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   createDefaultDraft,
@@ -14,8 +14,6 @@ import {
   generateStageJs,
   generateStandsJs,
 } from '../admin/exportDownload.js'
-import { categories } from '../data/categories.js'
-import { zones } from '../data/zones.js'
 import { Header } from '../components/Header.jsx'
 import { JumpNav } from '../components/JumpNav.jsx'
 import { SiteFooter } from '../components/SiteFooter.jsx'
@@ -40,19 +38,7 @@ export function AdminPage() {
   const [tab, setTab] = useState('setup')
   const [draft, setDraft] = useState(() => loadDraft() ?? createDefaultDraft())
   const [useDraftLive, setUseDraftLive] = useState(getUseDraft)
-  const [previewZone, setPreviewZone] = useState(null)
   const now = useMinuteClock()
-
-  const previewConfig = useMemo(
-    () => ({
-      ...draft.eventConfig,
-      title: draft.eventConfig.title,
-      date: draft.eventConfig.date,
-      locationLine: draft.eventConfig.locationLine,
-      soonMinutes: draft.eventConfig.soonMinutes,
-    }),
-    [draft.eventConfig],
-  )
 
   useEffect(() => {
     const t = setTimeout(() => saveDraft(draft), 400)
@@ -68,70 +54,24 @@ export function AdminPage() {
 
   const addStand = useCallback(() => {
     const id = `stand-${crypto.randomUUID().slice(0, 8)}`
-    const date = draft.eventConfig.date
     setDraft((d) => ({
       ...d,
       stands: [
         ...d.stands,
         {
           id,
+          number: '',
           title: 'Neuer Stand',
-          location: '',
-          category: categories[0].id,
-          zone: zones[0].id,
-          slots: [{ start: `${date}T10:00:00`, end: `${date}T12:00:00` }],
           note: '',
         },
       ],
     }))
-  }, [draft.eventConfig.date])
+  }, [])
 
   const updateStand = useCallback((id, patch) => {
     setDraft((d) => ({
       ...d,
       stands: d.stands.map((s) => (s.id === id ? { ...s, ...patch } : s)),
-    }))
-  }, [])
-
-  const updateSlot = useCallback((standId, slotIndex, key, value) => {
-    setDraft((d) => ({
-      ...d,
-      stands: d.stands.map((s) => {
-        if (s.id !== standId) return s
-        const slots = s.slots.map((sl, i) =>
-          i === slotIndex ? { ...sl, [key]: value } : sl,
-        )
-        return { ...s, slots }
-      }),
-    }))
-  }, [])
-
-  const addSlot = useCallback((standId) => {
-    const date = draft.eventConfig.date
-    setDraft((d) => ({
-      ...d,
-      stands: d.stands.map((s) =>
-        s.id === standId
-          ? {
-              ...s,
-              slots: [
-                ...s.slots,
-                { start: `${date}T14:00:00`, end: `${date}T15:00:00` },
-              ],
-            }
-          : s,
-      ),
-    }))
-  }, [draft.eventConfig.date])
-
-  const removeSlot = useCallback((standId, slotIndex) => {
-    setDraft((d) => ({
-      ...d,
-      stands: d.stands.map((s) => {
-        if (s.id !== standId) return s
-        const slots = s.slots.filter((_, i) => i !== slotIndex)
-        return { ...s, slots: slots.length ? slots : s.slots }
-      }),
     }))
   }, [])
 
@@ -274,26 +214,6 @@ export function AdminPage() {
                 }
               />
             </label>
-            <label className="admin__field">
-              <span>„Gleich“ ab (Minuten vor Start)</span>
-              <input
-                type="number"
-                min={5}
-                max={120}
-                step={5}
-                value={draft.eventConfig.soonMinutes}
-                onChange={(e) =>
-                  setDraft((d) => ({
-                    ...d,
-                    eventConfig: {
-                      ...d.eventConfig,
-                      soonMinutes: Number(e.target.value) || 30,
-                    },
-                  }))
-                }
-              />
-            </label>
-
             <label className="admin__check">
               <input
                 type="checkbox"
@@ -331,7 +251,10 @@ export function AdminPage() {
               {draft.stands.map((stand) => (
                 <li key={stand.id} className="admin__card">
                   <div className="admin__card-head">
-                    <strong>{stand.title || '(ohne Titel)'}</strong>
+                    <strong>
+                      {stand.number ? `${stand.number} · ` : ''}
+                      {stand.title || '(ohne Titel)'}
+                    </strong>
                     <button
                       type="button"
                       className="admin__btn admin__btn--ghost admin__btn--small"
@@ -349,38 +272,12 @@ export function AdminPage() {
                     />
                   </label>
                   <label className="admin__field">
-                    <span>Ort</span>
+                    <span>Standplatz-Nummer (laut Lageplan)</span>
                     <input
                       type="text"
-                      value={stand.location}
-                      onChange={(e) => updateStand(stand.id, { location: e.target.value })}
+                      value={stand.number ?? ''}
+                      onChange={(e) => updateStand(stand.id, { number: e.target.value })}
                     />
-                  </label>
-                  <label className="admin__field">
-                    <span>Kategorie</span>
-                    <select
-                      value={stand.category ?? categories[0].id}
-                      onChange={(e) => updateStand(stand.id, { category: e.target.value })}
-                    >
-                      {categories.map((cat) => (
-                        <option key={cat.id} value={cat.id}>
-                          {cat.emoji} {cat.label}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label className="admin__field">
-                    <span>Bereich (Lageplan)</span>
-                    <select
-                      value={stand.zone ?? zones[0].id}
-                      onChange={(e) => updateStand(stand.id, { zone: e.target.value })}
-                    >
-                      {zones.map((zone) => (
-                        <option key={zone.id} value={zone.id}>
-                          {zone.letter} · {zone.label}
-                        </option>
-                      ))}
-                    </select>
                   </label>
                   <label className="admin__field">
                     <span>Hinweistext</span>
@@ -390,46 +287,6 @@ export function AdminPage() {
                       onChange={(e) => updateStand(stand.id, { note: e.target.value })}
                     />
                   </label>
-                  <p className="admin__sub">Zeitfenster</p>
-                  {stand.slots.map((slot, idx) => (
-                    <div key={`${stand.id}-slot-${idx}`} className="admin__slot-row">
-                      <label>
-                        Beginn
-                        <input
-                          type="datetime-local"
-                          value={isoToDatetimeLocal(slot.start)}
-                          onChange={(e) =>
-                            updateSlot(stand.id, idx, 'start', datetimeLocalToIso(e.target.value))
-                          }
-                        />
-                      </label>
-                      <label>
-                        Ende
-                        <input
-                          type="datetime-local"
-                          value={isoToDatetimeLocal(slot.end)}
-                          onChange={(e) =>
-                            updateSlot(stand.id, idx, 'end', datetimeLocalToIso(e.target.value))
-                          }
-                        />
-                      </label>
-                      <button
-                        type="button"
-                        className="admin__btn admin__btn--ghost admin__btn--small"
-                        onClick={() => removeSlot(stand.id, idx)}
-                        disabled={stand.slots.length < 2}
-                      >
-                        Slot −
-                      </button>
-                    </div>
-                  ))}
-                  <button
-                    type="button"
-                    className="admin__btn admin__btn--ghost admin__btn--small"
-                    onClick={() => addSlot(stand.id)}
-                  >
-                    Zeitfenster +
-                  </button>
                 </li>
               ))}
             </ul>
@@ -564,17 +421,11 @@ export function AdminPage() {
 
             <h3 className="admin__preview-title">Vorschau (aktuelle Entwurfsdaten)</h3>
             <div className="admin__preview">
-              <Header eventConfig={previewConfig} />
+              <Header eventConfig={draft.eventConfig} />
               <JumpNav />
               <StageSection program={draft.stageProgram} now={now} />
-              <SitePlanSection activeZone={previewZone} onSelectZone={setPreviewZone} />
-              <StandsSection
-                stands={draft.stands}
-                now={now}
-                soonMinutes={draft.eventConfig.soonMinutes}
-                zoneFilter={previewZone}
-                onZoneFilterChange={setPreviewZone}
-              />
+              <SitePlanSection />
+              <StandsSection stands={draft.stands} />
             </div>
           </section>
         )}

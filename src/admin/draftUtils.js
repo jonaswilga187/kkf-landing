@@ -1,25 +1,12 @@
 import { EVENT_CONFIG } from '../config.js'
-import { categories } from '../data/categories.js'
 import { stands as standsFile } from '../data/stands.js'
 import { stageProgram as stageFile } from '../data/stage.js'
-import { zones } from '../data/zones.js'
 
 export const DRAFT_KEY = 'kkf_fest_draft_v2'
 export const USE_DRAFT_KEY = 'kkf_use_draft'
 
 export function normalizeStageProgram(stageProgram) {
   return stageProgram.map(({ lyricsFile: _legacy, ...item }) => item)
-}
-
-/** Füllt fehlende category/zone bei Drafts auf, die vor deren Einführung gespeichert wurden. */
-export function normalizeStands(stands) {
-  const fallbackCategory = categories[0].id
-  const fallbackZone = zones[0].id
-  return stands.map((s) => ({
-    ...s,
-    category: s.category ?? fallbackCategory,
-    zone: s.zone ?? fallbackZone,
-  }))
 }
 
 export function createDefaultDraft() {
@@ -29,7 +16,6 @@ export function createDefaultDraft() {
       title: EVENT_CONFIG.title,
       date: EVENT_CONFIG.date,
       locationLine: EVENT_CONFIG.locationLine,
-      soonMinutes: EVENT_CONFIG.soonMinutes,
     },
     stands: JSON.parse(JSON.stringify(standsFile)),
     stageProgram: JSON.parse(JSON.stringify(stageFile)),
@@ -44,7 +30,6 @@ export function loadDraft() {
     if (d.version !== 2 || !Array.isArray(d.stands) || !Array.isArray(d.stageProgram)) return null
     return {
       ...d,
-      stands: normalizeStands(d.stands),
       stageProgram: normalizeStageProgram(d.stageProgram),
     }
   } catch {

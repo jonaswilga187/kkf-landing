@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Header } from '../components/Header.jsx'
 import { JumpNav } from '../components/JumpNav.jsx'
 import { SiteFooter } from '../components/SiteFooter.jsx'
@@ -11,7 +10,6 @@ import { useMinuteClock } from '../hooks/useMinuteClock.js'
 export function HomePage() {
   const now = useMinuteClock()
   const { eventConfig, stands, stageProgram } = useFestData()
-  const [zoneFilter, setZoneFilter] = useState(null)
 
   return (
     <div className="app-shell">
@@ -19,14 +17,8 @@ export function HomePage() {
         <Header eventConfig={eventConfig} />
         <JumpNav />
         <StageSection program={stageProgram} now={now} />
-        <SitePlanSection activeZone={zoneFilter} onSelectZone={setZoneFilter} />
-        <StandsSection
-          stands={stands}
-          now={now}
-          soonMinutes={eventConfig.soonMinutes}
-          zoneFilter={zoneFilter}
-          onZoneFilterChange={setZoneFilter}
-        />
+        <SitePlanSection />
+        <StandsSection stands={stands} />
       </main>
       <SiteFooter />
     </div>

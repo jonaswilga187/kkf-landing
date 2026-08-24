@@ -2,12 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { EVENT_CONFIG as FILE_EVENT_CONFIG } from '../config.js'
 import { stands as FILE_STANDS } from '../data/stands.js'
 import { stageProgram as FILE_STAGE } from '../data/stage.js'
-import {
-  DRAFT_KEY,
-  USE_DRAFT_KEY,
-  normalizeStageProgram,
-  normalizeStands,
-} from '../admin/draftUtils.js'
+import { DRAFT_KEY, USE_DRAFT_KEY, normalizeStageProgram } from '../admin/draftUtils.js'
 
 function readSnapshot() {
   try {
@@ -40,7 +35,7 @@ function readSnapshot() {
     }
     return {
       eventConfig: { ...FILE_EVENT_CONFIG, ...d.eventConfig },
-      stands: normalizeStands(d.stands),
+      stands: d.stands,
       stageProgram: normalizeStageProgram(d.stageProgram),
       usesDraft: true,
     }

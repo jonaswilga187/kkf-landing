@@ -9,7 +9,7 @@ export function StageSection({ program, now }) {
         Hauptbühne
       </h2>
       <p className="section__lead">
-        Aktuelles Programm der Hauptbühne – Liedtexte können bei Bedarf direkt hier angezeigt werden.
+        Aktuelles Programm der Hauptbühne – Ablauf & Liedtexte können bei Bedarf direkt hier angezeigt werden.
       </p>
       <ol className="stage-timeline" aria-label="Ablauf Hauptbühne">
         {program.map((item) => {

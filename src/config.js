@@ -16,8 +16,8 @@ export const BRAND_LOGO = {
 export const EVENT_CONFIG = {
   title: 'Kirchenkreisfest Celle',
   /** Kalendertag des Festes (YYYY-MM-DD) – muss zu den ISO-Zeiten in src/data passen */
-  date: '2026-06-14',
-  locationLine: 'Celle',
+  date: '2026-09-05',
+  locationLine: 'Landgestüt Celle',
   /** Minuten vor Start, ab wann „Gleich“ angezeigt wird */
   soonMinutes: 30,
 }

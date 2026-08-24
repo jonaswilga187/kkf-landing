@@ -15,14 +15,14 @@ export function StageLyrics({ lyrics, title }) {
         aria-controls={panelId}
         onClick={() => setOpen((visible) => !visible)}
       >
-        {open ? 'Liedtext ausblenden' : 'Liedtext anzeigen'}
+        {open ? 'Ablauf ausblenden' : 'Ablauf anzeigen'}
       </button>
       {open ? (
         <div
           id={panelId}
           className="stage-lyrics__panel"
           role="region"
-          aria-label={`Liedtext: ${title}`}
+          aria-label={`Ablauf: ${title}`}
         >
           <pre className="stage-lyrics__text">{lyrics.trim()}</pre>
         </div>

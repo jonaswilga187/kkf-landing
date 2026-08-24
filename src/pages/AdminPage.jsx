@@ -498,7 +498,7 @@ export function AdminPage() {
                     </label>
                   </div>
                   <label className="admin__field">
-                    <span>Liedtext (optional, wird online angezeigt)</span>
+                    <span>Ablauf / Liedtext (optional, wird online angezeigt)</span>
                     <textarea
                       rows={6}
                       placeholder="Strophe, Refrain …"

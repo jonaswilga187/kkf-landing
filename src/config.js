@@ -18,4 +18,6 @@ export const EVENT_CONFIG = {
   /** Kalendertag des Festes (YYYY-MM-DD) – muss zu den ISO-Zeiten in src/data passen */
   date: '2026-09-05',
   locationLine: 'Landgestüt Celle',
+  /** Wofür die Spenden/Kollekte des Festes verwendet werden – Platzhalter, bis final geklärt */
+  donationPurpose: 'Der Spendenzweck des Festes wird noch bekannt gegeben.',
 }

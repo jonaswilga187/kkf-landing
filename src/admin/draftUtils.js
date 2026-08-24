@@ -16,6 +16,7 @@ export function createDefaultDraft() {
       title: EVENT_CONFIG.title,
       date: EVENT_CONFIG.date,
       locationLine: EVENT_CONFIG.locationLine,
+      donationPurpose: EVENT_CONFIG.donationPurpose,
     },
     stands: JSON.parse(JSON.stringify(standsFile)),
     stageProgram: JSON.parse(JSON.stringify(stageFile)),

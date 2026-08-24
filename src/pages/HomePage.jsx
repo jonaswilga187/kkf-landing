@@ -1,3 +1,4 @@
+import { DonationSection } from '../components/DonationSection.jsx'
 import { Header } from '../components/Header.jsx'
 import { JumpNav } from '../components/JumpNav.jsx'
 import { SiteFooter } from '../components/SiteFooter.jsx'
@@ -15,6 +16,7 @@ export function HomePage() {
     <div className="app-shell">
       <main className="main">
         <Header eventConfig={eventConfig} />
+        <DonationSection donationPurpose={eventConfig.donationPurpose} />
         <JumpNav />
         <StageSection program={stageProgram} now={now} />
         <SitePlanSection />

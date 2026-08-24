@@ -14,6 +14,7 @@ import {
   generateStageJs,
   generateStandsJs,
 } from '../admin/exportDownload.js'
+import { DonationSection } from '../components/DonationSection.jsx'
 import { Header } from '../components/Header.jsx'
 import { JumpNav } from '../components/JumpNav.jsx'
 import { SiteFooter } from '../components/SiteFooter.jsx'
@@ -210,6 +211,19 @@ export function AdminPage() {
                   setDraft((d) => ({
                     ...d,
                     eventConfig: { ...d.eventConfig, locationLine: e.target.value },
+                  }))
+                }
+              />
+            </label>
+            <label className="admin__field">
+              <span>Spendenzweck</span>
+              <textarea
+                rows={2}
+                value={draft.eventConfig.donationPurpose ?? ''}
+                onChange={(e) =>
+                  setDraft((d) => ({
+                    ...d,
+                    eventConfig: { ...d.eventConfig, donationPurpose: e.target.value },
                   }))
                 }
               />
@@ -422,6 +436,7 @@ export function AdminPage() {
             <h3 className="admin__preview-title">Vorschau (aktuelle Entwurfsdaten)</h3>
             <div className="admin__preview">
               <Header eventConfig={draft.eventConfig} />
+              <DonationSection donationPurpose={draft.eventConfig.donationPurpose} />
               <JumpNav />
               <StageSection program={draft.stageProgram} now={now} />
               <SitePlanSection />

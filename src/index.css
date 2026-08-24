@@ -162,6 +162,27 @@ body {
   line-height: 1.45;
 }
 
+/* Spendenzweck */
+.donation-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  margin: 0 0 var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius);
+  background: var(--highlight-soft);
+  border: 1px solid var(--highlight-border);
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.donation-note__icon {
+  flex-shrink: 0;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
 /* Sprungmarken */
 .jump-nav {
   position: sticky;

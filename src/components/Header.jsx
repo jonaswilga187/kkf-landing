@@ -24,7 +24,7 @@ export function Header({ eventConfig: cfg = EVENT_CONFIG } = {}) {
           fetchPriority="high"
         />
       </div>
-      <p className="site-header__eyebrow">Ein Tag für den Kirchenkreis Celle</p>
+      <p className="site-header__eyebrow">Ein Tag für uns</p>
       <h1 className="site-header__title">{cfg.title}</h1>
       <p className="site-header__meta">
         {formattedDate}

@@ -381,6 +381,22 @@ export function AdminPage() {
                       }
                     />
                   </label>
+                  <label className="admin__field">
+                    <span>
+                      Liedtext-PDF (optional, Datei vorher unter{' '}
+                      <code className="inline-code">public/lyrics/</code> ablegen)
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="/lyrics/mein-lied.pdf"
+                      value={item.lyricsFile ?? ''}
+                      onChange={(e) =>
+                        updateStage(item.id, {
+                          lyricsFile: e.target.value || undefined,
+                        })
+                      }
+                    />
+                  </label>
                 </li>
               ))}
             </ul>

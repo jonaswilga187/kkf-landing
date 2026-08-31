@@ -550,6 +550,11 @@ body {
   margin-top: var(--space-xs);
 }
 
+.stage-lyrics__file-link {
+  margin-top: var(--space-xs);
+  text-decoration: none;
+}
+
 .stage-lyrics__toggle {
   width: 100%;
 }

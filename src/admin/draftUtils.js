@@ -5,10 +5,6 @@ import { stageProgram as stageFile } from '../data/stage.js'
 export const DRAFT_KEY = 'kkf_fest_draft_v2'
 export const USE_DRAFT_KEY = 'kkf_use_draft'
 
-export function normalizeStageProgram(stageProgram) {
-  return stageProgram.map(({ lyricsFile: _legacy, ...item }) => item)
-}
-
 export function createDefaultDraft() {
   return {
     version: 2,
@@ -29,10 +25,7 @@ export function loadDraft() {
     if (!raw) return null
     const d = JSON.parse(raw)
     if (d.version !== 2 || !Array.isArray(d.stands) || !Array.isArray(d.stageProgram)) return null
-    return {
-      ...d,
-      stageProgram: normalizeStageProgram(d.stageProgram),
-    }
+    return d
   } catch {
     return null
   }

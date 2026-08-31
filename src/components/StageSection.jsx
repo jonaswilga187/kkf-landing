@@ -27,6 +27,16 @@ export function StageSection({ program, now }) {
                 {item.lyrics ? (
                   <StageLyrics lyrics={item.lyrics} title={item.title} />
                 ) : null}
+                {item.lyricsFile ? (
+                  <a
+                    className="btn btn--secondary stage-lyrics__file-link"
+                    href={item.lyricsFile}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Liedtexte als PDF öffnen
+                  </a>
+                ) : null}
               </div>
             </li>
           )

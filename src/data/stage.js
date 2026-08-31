@@ -43,6 +43,11 @@ export const stageProgram = [
     end: `${d}T16:55:00`,
     title: 'Singen mit der Stadtkantorei',
     artist: 'KMD Kai Schöneweiß',
+    lyrics: `Du Ursprung allen Lebens
+Nun danket alle Gott
+Jesu bleibet meine Freude
+Halleluja (aus: Der Messias)
+Verleih uns Frieden gnädiglich`,
   },
   {
     id: 'fritz-baltruweit',
@@ -50,6 +55,18 @@ export const stageProgram = [
     end: `${d}T18:00:00`,
     title: 'Fritz Baltruweit',
     artist: '',
+    lyrics: `1. Gott gab uns Atem
+2. Heute hier, morgen dort
+3. Wo ein Mensch Vertrauen gibt
+4. Griechischer Wein
+5. Couragiert widerständig
+6. Freunde, dass der Mandelzweig
+7. Halleluja
+8. Ich sing für dich
+9. Über den Wolken
+10. Wir sind Gäste
+11. Jeder Mensch braucht einen Engel
+12. Gib mir deine Hand`,
   },
   {
     id: 'kabarett-2',

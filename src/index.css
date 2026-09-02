@@ -551,7 +551,9 @@ body {
 }
 
 .stage-lyrics__file-link {
-  margin-top: var(--space-xs);
+  display: flex;
+  width: fit-content;
+  margin: var(--space-xs) auto 0;
   text-decoration: none;
 }
 

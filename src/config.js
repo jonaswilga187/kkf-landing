@@ -20,5 +20,5 @@ export const EVENT_CONFIG = {
   locationLine: 'Landgestüt Celle',
   /** Wofür die Spenden/Kollekte des Festes verwendet werden */
   donationPurpose:
-    'Der Reinerlös des Festes geht an die diakonische Arbeit des Kirchenkreises Celle. Vielfältigste Beratungs- und Hilfsangebote bekommen Menschen jeglicher Altersstufe: von der Bahnhofsmission über die Kirchenkreissozialarbeit bis zu psychologischen Beratungsmöglichkeiten, die das Diakonische Werk in der Fritzenwiese anbietet. Das kostet alles Geld!',
+    'Der Reinerlös des Festes geht an die diakonische Arbeit des Kirchenkreises Celle.',
 }

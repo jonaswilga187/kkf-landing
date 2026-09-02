@@ -10,7 +10,7 @@ import { useMinuteClock } from '../hooks/useMinuteClock.js'
 
 export function HomePage() {
   const now = useMinuteClock()
-  const { eventConfig, stands, stageProgram } = useFestData()
+  const { eventConfig, stands, stageProgram, outdoorStageProgram } = useFestData()
 
   return (
     <div className="app-shell">
@@ -18,7 +18,20 @@ export function HomePage() {
         <Header eventConfig={eventConfig} />
         <DonationSection donationPurpose={eventConfig.donationPurpose} />
         <JumpNav />
-        <StageSection program={stageProgram} now={now} />
+        <StageSection
+          program={stageProgram}
+          now={now}
+          id="buehne"
+          title="Bühne in der Reithalle"
+          lead="Aktuelles Programm der Bühne in der Reithalle."
+        />
+        <StageSection
+          program={outdoorStageProgram}
+          now={now}
+          id="aussenbuehne"
+          title="Außenbühne"
+          lead="Musikalisches Programm auf dem Außengelände am Paradeplatz, 14:30–18:00 Uhr."
+        />
         <SitePlanSection />
         <StandsSection stands={stands} />
       </main>

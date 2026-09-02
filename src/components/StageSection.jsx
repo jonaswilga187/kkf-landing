@@ -2,14 +2,21 @@ import { getTimelinePhase } from '../utils/time.js'
 import { formatRange } from '../utils/format.js'
 import { StageLyrics } from './StageLyrics.jsx'
 
-export function StageSection({ program, now }) {
+export function StageSection({
+  program,
+  now,
+  id = 'buehne',
+  title = 'Bühne in der Reithalle',
+  lead = 'Aktuelles Programm der Bühne in der Reithalle.',
+}) {
+  const headingId = `${id}-heading`
   return (
-    <section className="section" id="buehne" aria-labelledby="buehne-heading">
-      <h2 id="buehne-heading" className="section__title">
-        Hauptbühne
+    <section className="section" id={id} aria-labelledby={headingId}>
+      <h2 id={headingId} className="section__title">
+        {title}
       </h2>
-      <p className="section__lead">Aktuelles Programm der Hauptbühne.</p>
-      <ol className="stage-timeline" aria-label="Ablauf Hauptbühne">
+      <p className="section__lead">{lead}</p>
+      <ol className="stage-timeline" aria-label={`Ablauf ${title}`}>
         {program.map((item) => {
           const phase = getTimelinePhase(item, now)
           return (

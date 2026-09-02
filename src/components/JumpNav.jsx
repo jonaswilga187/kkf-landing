@@ -1,5 +1,6 @@
 const links = [
-  { href: '#buehne', label: 'Hauptbühne' },
+  { href: '#buehne', label: 'Bühne Reithalle' },
+  { href: '#aussenbuehne', label: 'Außenbühne' },
   { href: '#lageplan', label: 'Lageplan' },
   { href: '#staende', label: 'Stände' },
 ]

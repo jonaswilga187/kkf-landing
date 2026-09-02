@@ -1,6 +1,7 @@
 import { EVENT_CONFIG } from '../config.js'
 import { stands as standsFile } from '../data/stands.js'
 import { stageProgram as stageFile } from '../data/stage.js'
+import { outdoorStageProgram as outdoorStageFile } from '../data/outdoorStage.js'
 
 export const DRAFT_KEY = 'kkf_fest_draft_v2'
 export const USE_DRAFT_KEY = 'kkf_use_draft'
@@ -16,6 +17,7 @@ export function createDefaultDraft() {
     },
     stands: JSON.parse(JSON.stringify(standsFile)),
     stageProgram: JSON.parse(JSON.stringify(stageFile)),
+    outdoorStageProgram: JSON.parse(JSON.stringify(outdoorStageFile)),
   }
 }
 

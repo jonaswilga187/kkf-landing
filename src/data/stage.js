@@ -67,6 +67,7 @@ Verleih uns Frieden gnädiglich`,
 10. Wir sind Gäste
 11. Jeder Mensch braucht einen Engel
 12. Gib mir deine Hand`,
+    lyricsFile: '/lyrics/fritz-baltruweit-liederzettel.pdf',
   },
   {
     id: 'kabarett-2',

@@ -11,6 +11,7 @@ import { datetimeLocalToIso, isoToDatetimeLocal } from '../admin/dateHelpers.js'
 import {
   downloadTextFile,
   generateEventConfigSnippet,
+  generateOutdoorStageJs,
   generateStageJs,
   generateStandsJs,
 } from '../admin/exportDownload.js'
@@ -30,7 +31,8 @@ const DEFAULT_PIN = 'fest2026'
 const TABS = [
   { id: 'setup', label: 'Allgemein' },
   { id: 'stands', label: 'Stände' },
-  { id: 'stage', label: 'Hauptbühne' },
+  { id: 'stage', label: 'Bühne Reithalle' },
+  { id: 'outdoor-stage', label: 'Außenbühne' },
   { id: 'export', label: 'Export & Vorschau' },
 ]
 
@@ -105,6 +107,38 @@ export function AdminPage() {
     setDraft((d) => ({
       ...d,
       stageProgram: d.stageProgram.filter((p) => p.id !== id),
+    }))
+  }, [])
+
+  const addOutdoorItem = useCallback(() => {
+    const date = draft.eventConfig.date
+    const id = `o-${crypto.randomUUID().slice(0, 8)}`
+    setDraft((d) => ({
+      ...d,
+      outdoorStageProgram: [
+        ...d.outdoorStageProgram,
+        {
+          id,
+          start: `${date}T15:00:00`,
+          end: `${date}T15:30:00`,
+          title: 'Neuer Programmpunkt',
+          artist: '',
+        },
+      ],
+    }))
+  }, [draft.eventConfig.date])
+
+  const updateOutdoor = useCallback((id, patch) => {
+    setDraft((d) => ({
+      ...d,
+      outdoorStageProgram: d.outdoorStageProgram.map((p) => (p.id === id ? { ...p, ...patch } : p)),
+    }))
+  }, [])
+
+  const removeOutdoor = useCallback((id) => {
+    setDraft((d) => ({
+      ...d,
+      outdoorStageProgram: d.outdoorStageProgram.filter((p) => p.id !== id),
     }))
   }, [])
 
@@ -310,7 +344,7 @@ export function AdminPage() {
         {tab === 'stage' && (
           <section className="admin__panel" aria-labelledby="adm-stage">
             <h2 id="adm-stage" className="admin__panel-title">
-              Hauptbühne
+              Bühne in der Reithalle
             </h2>
             <button type="button" className="admin__btn admin__btn--primary" onClick={addStageItem}>
               Programmpunkt hinzufügen
@@ -403,14 +437,87 @@ export function AdminPage() {
           </section>
         )}
 
+        {tab === 'outdoor-stage' && (
+          <section className="admin__panel" aria-labelledby="adm-outdoor">
+            <h2 id="adm-outdoor" className="admin__panel-title">
+              Außenbühne
+            </h2>
+            <p className="admin__hint">Programm auf dem Außengelände am Paradeplatz.</p>
+            <button
+              type="button"
+              className="admin__btn admin__btn--primary"
+              onClick={addOutdoorItem}
+            >
+              Programmpunkt hinzufügen
+            </button>
+            <ul className="admin__list">
+              {draft.outdoorStageProgram.map((item, order) => (
+                <li key={item.id} className="admin__card">
+                  <div className="admin__card-head">
+                    <strong>
+                      {order + 1}. {item.title || '(ohne Titel)'}
+                    </strong>
+                    <button
+                      type="button"
+                      className="admin__btn admin__btn--ghost admin__btn--small"
+                      onClick={() => removeOutdoor(item.id)}
+                    >
+                      Entfernen
+                    </button>
+                  </div>
+                  <label className="admin__field">
+                    <span>Titel</span>
+                    <input
+                      type="text"
+                      value={item.title}
+                      onChange={(e) => updateOutdoor(item.id, { title: e.target.value })}
+                    />
+                  </label>
+                  <label className="admin__field">
+                    <span>Interpret / Gruppe</span>
+                    <input
+                      type="text"
+                      value={item.artist ?? ''}
+                      onChange={(e) => updateOutdoor(item.id, { artist: e.target.value })}
+                    />
+                  </label>
+                  <div className="admin__slot-row">
+                    <label>
+                      Beginn
+                      <input
+                        type="datetime-local"
+                        value={isoToDatetimeLocal(item.start)}
+                        onChange={(e) =>
+                          updateOutdoor(item.id, { start: datetimeLocalToIso(e.target.value) })
+                        }
+                      />
+                    </label>
+                    <label>
+                      Ende
+                      <input
+                        type="datetime-local"
+                        value={isoToDatetimeLocal(item.end)}
+                        onChange={(e) =>
+                          updateOutdoor(item.id, { end: datetimeLocalToIso(e.target.value) })
+                        }
+                      />
+                    </label>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         {tab === 'export' && (
           <section className="admin__panel" aria-labelledby="adm-exp">
             <h2 id="adm-exp" className="admin__panel-title">
               Export &amp; Vorschau
             </h2>
             <p className="admin__hint">
-              Export ersetzt die Inhalte von <code className="inline-code">src/data/stands.js</code>{' '}
-              und <code className="inline-code">stage.js</code> – die Datei{' '}
+              Export ersetzt die Inhalte von <code className="inline-code">src/data/stands.js</code>,{' '}
+              <code className="inline-code">stage.js</code> und{' '}
+              <code className="inline-code">outdoorStage.js</code> – die Datei{' '}
               <code className="inline-code">EVENT_CONFIG</code> manuell in{' '}
               <code className="inline-code">src/config.js</code> einfügen (nur der Block,{' '}
               <code className="inline-code">BRAND_LOGO</code> bleibt).
@@ -436,6 +543,19 @@ export function AdminPage() {
               </button>
               <button
                 type="button"
+                className="admin__btn admin__btn--primary"
+                onClick={() =>
+                  downloadTextFile(
+                    'outdoorStage.js',
+                    generateOutdoorStageJs(draft),
+                    'text/javascript',
+                  )
+                }
+              >
+                outdoorStage.js herunterladen
+              </button>
+              <button
+                type="button"
                 className="admin__btn admin__btn--secondary"
                 onClick={() =>
                   downloadTextFile(
@@ -454,7 +574,20 @@ export function AdminPage() {
               <Header eventConfig={draft.eventConfig} />
               <DonationSection donationPurpose={draft.eventConfig.donationPurpose} />
               <JumpNav />
-              <StageSection program={draft.stageProgram} now={now} />
+              <StageSection
+                program={draft.stageProgram}
+                now={now}
+                id="buehne"
+                title="Bühne in der Reithalle"
+                lead="Aktuelles Programm der Bühne in der Reithalle."
+              />
+              <StageSection
+                program={draft.outdoorStageProgram}
+                now={now}
+                id="aussenbuehne"
+                title="Außenbühne"
+                lead="Musikalisches Programm auf dem Außengelände am Paradeplatz, 14:30–18:00 Uhr."
+              />
               <SitePlanSection />
               <StandsSection stands={draft.stands} />
             </div>

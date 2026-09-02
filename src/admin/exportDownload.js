@@ -14,8 +14,14 @@ export const stands = ${JSON.stringify(draft.stands, null, 2)}
 }
 
 export function generateStageJs(draft) {
-  return `/** Hauptbühne – aus Admin exportiert */
+  return `/** Bühne in der Reithalle – aus Admin exportiert */
 export const stageProgram = ${JSON.stringify(draft.stageProgram, null, 2)}
+`
+}
+
+export function generateOutdoorStageJs(draft) {
+  return `/** Außenbühne – aus Admin exportiert */
+export const outdoorStageProgram = ${JSON.stringify(draft.outdoorStageProgram, null, 2)}
 `
 }
 

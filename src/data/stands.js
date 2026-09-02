@@ -8,8 +8,8 @@ export const stands = [
   {
     id: 'standplatz-1',
     number: '1',
-    title: 'Genuss von Gegrilltem',
-    note: 'Wildgriller',
+    title: 'Wildbratwurst',
+    note: 'Horst Theobald',
   },
   {
     id: 'standplatz-2',
@@ -99,7 +99,7 @@ export const stands = [
     id: 'standplatz-17',
     number: '17',
     title: 'Poffertjes',
-    note: 'KK Winsen',
+    note: 'KG Winsen',
   },
   {
     id: 'standplatz-18',
@@ -196,6 +196,18 @@ export const stands = [
     number: 'F',
     title: 'Kleines Fußballfeld',
     note: 'KK Celle',
+  },
+  {
+    id: 'standplatz-grill',
+    number: 'Grill',
+    title: 'Bratwürste und Kinderbratwürste',
+    note: 'Kreuzkirche und KG Neuenhüsen',
+  },
+  {
+    id: 'standplatz-grill-co',
+    number: 'Grill und Co.',
+    title: 'Sommers Feuertopf',
+    note: 'Chilli sin carne, Kartoffelecken und Schichtfleisch – Steffi und Andreas Sommer',
   },
   {
     id: 'standplatz-lf',

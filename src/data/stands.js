@@ -13,13 +13,13 @@ export const stands = [
   },
   {
     id: 'standplatz-2',
-    number: '2',
+    number: '2–3',
     title: 'Infos, Basteln, Glitzertattoos',
     note: 'Familienbildungsstätte',
   },
   {
-    id: 'standplatz-3-4',
-    number: '3–4',
+    id: 'standplatz-4',
+    number: '4',
     title: 'Basteln und Second Hand',
     note: 'Familienzentrum Vorwerk',
   },
@@ -128,7 +128,7 @@ export const stands = [
   {
     id: 'standplatz-22',
     number: '22',
-    title: 'Stoffe, Genähtes – Erlös für das Projekt des Tages',
+    title: 'Genähtes',
     note: 'Sabine Bogon',
   },
   {
@@ -147,7 +147,7 @@ export const stands = [
     id: 'standplatz-25-26',
     number: '25–26',
     title: 'Seelenstark!',
-    note: 'KKJD',
+    note: 'KKJD, Bergen-Belsen',
   },
   {
     id: 'standplatz-27',

@@ -147,7 +147,7 @@ export const stands = [
     id: 'standplatz-25-26',
     number: '25–26',
     title: 'Seelenstark!',
-    note: 'KKJD, Bergen-Belsen',
+    note: 'KKJD, Friedensort - Kirche des gerechten Friedens',
   },
   {
     id: 'standplatz-27',

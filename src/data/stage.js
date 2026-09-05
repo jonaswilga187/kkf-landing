@@ -48,7 +48,6 @@ Nun danket alle Gott
 Jesu bleibet meine Freude
 Halleluja (aus: Der Messias)
 Verleih uns Frieden gnädiglich`,
-    lyricsFile: '/lyrics/stadtkantorei-singalong.pdf',
   },
   {
     id: 'fritz-baltruweit',

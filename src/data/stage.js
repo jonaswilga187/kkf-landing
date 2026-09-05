@@ -48,7 +48,6 @@ Nun danket alle Gott
 Jesu bleibet meine Freude
 Halleluja (aus: Der Messias)
 Verleih uns Frieden gnädiglich`,
-    lyricsFile: '/lyrics/stadtkantorei-singalong.pdf',
   },
   {
     id: 'fritz-baltruweit',
@@ -68,7 +67,6 @@ Verleih uns Frieden gnädiglich`,
 10. Wir sind Gäste
 11. Jeder Mensch braucht einen Engel
 12. Gib mir deine Hand`,
-    lyricsFile: '/lyrics/fritz-baltruweit-liederzettel.pdf',
   },
   {
     id: 'kabarett-2',
